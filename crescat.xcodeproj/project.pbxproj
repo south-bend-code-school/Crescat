@@ -15,6 +15,7 @@
 		23C424D01DFCCBF500D1D132 /* crescatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424CF1DFCCBF500D1D132 /* crescatTests.swift */; };
 		23C424DB1DFCCBF500D1D132 /* crescatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424DA1DFCCBF500D1D132 /* crescatUITests.swift */; };
 		23C424E91DFCCD1400D1D132 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23C424E81DFCCD1400D1D132 /* GoogleService-Info.plist */; };
+		23D70A871DFCEB5B0044BBFE /* Crescat Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D70A861DFCEB5B0044BBFE /* Crescat Logo.png */; };
 		5494DAD3D7D3346A3ACB3D1C /* Pods_crescat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBBD512D5FCF70E3CC11B6F /* Pods_crescat.framework */; };
 		916414DE70EB1ED7183BFCBC /* Pods_crescatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1CA9BB235F118A4750A030A /* Pods_crescatTests.framework */; };
 		D62427DB950669E1F4DFB61A /* Pods_crescatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FADD1B42779C8577BCB634 /* Pods_crescatUITests.framework */; };
@@ -53,6 +54,7 @@
 		23C424DC1DFCCBF500D1D132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23C424E81DFCCD1400D1D132 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23D70A841DFCE4710044BBFE /* crescat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = crescat.entitlements; sourceTree = "<group>"; };
+		23D70A861DFCEB5B0044BBFE /* Crescat Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Crescat Logo.png"; path = "../../../../Downloads/Crescat Logo.png"; sourceTree = "<group>"; };
 		253B8CC57A428174AF3B845B /* Pods-crescatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crescatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-crescatTests/Pods-crescatTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E7EE37DD23BAAADA8B20502 /* Pods-crescat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crescat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crescat/Pods-crescat.debug.xcconfig"; sourceTree = "<group>"; };
 		678B6BE58E53702A2DE94B1F /* Pods-crescat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crescat.release.xcconfig"; path = "Pods/Target Support Files/Pods-crescat/Pods-crescat.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		23C424AE1DFCCBF400D1D132 = {
 			isa = PBXGroup;
 			children = (
+				23D70A851DFCEB200044BBFE /* Images */,
 				23C424B91DFCCBF500D1D132 /* crescat */,
 				23C424CE1DFCCBF500D1D132 /* crescatTests */,
 				23C424D91DFCCBF500D1D132 /* crescatUITests */,
@@ -159,6 +162,15 @@
 			);
 			path = crescatUITests;
 			sourceTree = "<group>";
+		};
+		23D70A851DFCEB200044BBFE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				23D70A861DFCEB5B0044BBFE /* Crescat Logo.png */,
+			);
+			name = Images;
+			path = crescatTests;
+			sourceTree = SOURCE_ROOT;
 		};
 		CD4C0F6037DEB788BC0A501B /* Frameworks */ = {
 			isa = PBXGroup;
@@ -294,6 +306,7 @@
 			files = (
 				23C424C51DFCCBF500D1D132 /* LaunchScreen.storyboard in Resources */,
 				23C424C21DFCCBF500D1D132 /* Assets.xcassets in Resources */,
+				23D70A871DFCEB5B0044BBFE /* Crescat Logo.png in Resources */,
 				23C424C01DFCCBF500D1D132 /* Main.storyboard in Resources */,
 				23C424E91DFCCD1400D1D132 /* GoogleService-Info.plist in Resources */,
 			);
