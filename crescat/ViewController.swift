@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     @IBAction func createAccountAction(_ sender: Any) {
         if self.emailField.text == "" || self.passwordField.text == ""
         {
-            let alertController = UIAlertController(title: "Oops!", message: "Please enter a username and password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
@@ -51,10 +51,6 @@ class ViewController: UIViewController {
                 if error == nil
                 {
                     // successfully created user
-                    /*
-                    self.logoutButton.alpha = 1.0
-                    self.userLabel.text = user?.email
-                    */
                     self.userLabel.text = "waiting for email verification"
                     self.emailField.text = ""
                     self.passwordField.text = ""
@@ -87,7 +83,7 @@ class ViewController: UIViewController {
     @IBAction func loginAction(_ sender: Any) {
         if self.emailField.text == "" || self.passwordField.text == ""
         {
-            let alertController = UIAlertController(title: "Oops!", message: "Please enter a username and password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
@@ -147,6 +143,45 @@ class ViewController: UIViewController {
             })
  
 
+        }
+    }
+    
+    @IBAction func forgotPassword(_ sender: Any) {
+
+        if self.emailField.text == ""
+        {
+            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            FIRAuth.auth()?.sendPasswordReset(withEmail: self.emailField.text!) { error in
+                if let error = error {
+                    // An error happened.
+                    let alertVC = UIAlertController(title: "Oops!", message: "Failed to send reset password link to \(self.emailField.text)", preferredStyle: .alert)
+                    let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                    (_) in
+                    }
+                
+                    alertVC.addAction(alertActionOkay)
+                    self.present(alertVC, animated: true, completion: nil)
+                }
+                else
+                {
+                    // Password reset email sent.
+                    let alertVC = UIAlertController(title: "Reset Password Email Sent", message: "Reset password link sent to \(self.emailField.text).", preferredStyle: .alert)
+                    let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                        (_) in
+                    }
+                
+                    alertVC.addAction(alertActionOkay)
+                    self.present(alertVC, animated: true, completion: nil)
+
+                }
+            }
         }
     }
 }
