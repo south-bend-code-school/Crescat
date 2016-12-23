@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+
+        
         if let user = FIRAuth.auth()?.currentUser {
             self.logoutButton.alpha = 1.0
             self.userLabel.text = user.email
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func createAccountAction(_ sender: Any) {
+        /*
         if self.emailField.text == "" || self.passwordField.text == ""
         {
             let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password", preferredStyle: .alert)
@@ -70,6 +73,7 @@ class ViewController: UIViewController {
                 }
             })
         }
+ */
     }
 
     @IBAction func logoutAction(_ sender: Any) {
@@ -120,11 +124,12 @@ class ViewController: UIViewController {
                         else
                         {
                             NSLog("Email verified. Signing in...")
-                            self.logoutButton.alpha = 1.0
-                            self.userLabel.text = user.email
-                            self.emailField.text = ""
-                            self.passwordField.text = ""
-
+                            //self.logoutButton.alpha = 1.0
+                            //self.userLabel.text = user.email
+                            //self.emailField.text = ""
+                            //self.passwordField.text = ""
+                            
+                            self.performSegue(withIdentifier: "loginSegue", sender: self)
                         }
                     }
                     

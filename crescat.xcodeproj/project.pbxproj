@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		237BE0521E0C89E900769A10 /* SignUpVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */; };
+		237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0551E0CB1A300769A10 /* HomeVC.swift */; };
 		23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */; };
 		23C424BD1DFCCBF500D1D132 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424BC1DFCCBF500D1D132 /* ViewController.swift */; };
 		23C424C01DFCCBF500D1D132 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C424BE1DFCCBF500D1D132 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVCViewController.swift; sourceTree = "<group>"; };
+		237BE0551E0CB1A300769A10 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		23C424B71DFCCBF500D1D132 /* crescat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crescat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23C424BC1DFCCBF500D1D132 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				23D70A841DFCE4710044BBFE /* crescat.entitlements */,
 				23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */,
 				23C424BC1DFCCBF500D1D132 /* ViewController.swift */,
+				237BE0551E0CB1A300769A10 /* HomeVC.swift */,
 				23C424BE1DFCCBF500D1D132 /* Main.storyboard */,
 				237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */,
 				23C424C11DFCCBF500D1D132 /* Assets.xcassets */,
@@ -475,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23C424BD1DFCCBF500D1D132 /* ViewController.swift in Sources */,
+				237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */,
 				23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */,
 				237BE0521E0C89E900769A10 /* SignUpVCViewController.swift in Sources */,
 			);
