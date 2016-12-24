@@ -9,19 +9,23 @@
 import UIKit
 import FirebaseAuth
 
+
 class HomeVC: UIViewController {
 
     @IBOutlet weak var userEmailLabel: UILabel!
     
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
 
         let user = FIRAuth.auth()?.currentUser
         self.userEmailLabel.text = user?.email
-        
-        // Do any additional setup after loading the view.
+
+
     }
-    
     
     @IBAction func logout(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()

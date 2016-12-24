@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpVCViewController: UIViewController {
 
@@ -30,10 +31,6 @@ class SignUpVCViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-        
-        
-
         
     }
 
@@ -93,9 +90,63 @@ class SignUpVCViewController: UIViewController {
                         {
                             NSLog("Email verified. Signing in...")
                             print("signed in woo!!!")
-                            self.emailTextField.text = ""
-                            self.passwordTextField.text = ""
+                            //self.emailTextField.text = ""
+                            //self.passwordTextField.text = ""
                             
+                            
+                            
+                            // update database with this newly created user
+                            var ref: FIRDatabaseReference!
+                            ref = FIRDatabase.database().reference()
+                            
+                            if self.studentProfessional.selectedSegmentIndex == 0 {
+                                print("adding new student info to database");
+                                
+                                let studentUserInfo = [
+                                    "name": self.nameTextField.text,
+                                    "email": self.emailTextField.text,
+                                    "password":self.passwordTextField.text
+                                    ,
+                                    "mobile": self.mobileTextField.text,
+                                    "major": self.companyMajorTextField.text,
+                                    "year":self.positionYearTextField.text,
+                                    "school": self.schoolTextField.text,
+                                    "industry": self.industryTextField.text,
+                                    "location":self.locationTextField.text,
+                                    "isStudent":true,
+                                    "isProfessional":false
+
+ 
+                                ]
+                                ref.child("users").child(user.uid).setValue(["userInfo": studentUserInfo])
+                            }
+                            else if self.studentProfessional.selectedSegmentIndex == 1 {
+                                print("adding new professional info to database");
+                                
+                                let professionalUserInfo = [
+                                    "name": self.nameTextField.text,
+                                    "email": self.emailTextField.text,
+                                    "password":self.passwordTextField.text
+                                    
+                                    ,
+                                    "mobile": self.mobileTextField.text,
+                                    "company": self.companyMajorTextField.text,
+                                    "position":self.positionYearTextField.text,
+                                    "school": self.schoolTextField.text,
+                                    "industry": self.industryTextField.text,
+                                    "location":self.locationTextField.text,
+                                    "isStudent":false,
+                                    "isProfessional":true
+ 
+                                ]
+                                ref.child("users").child(user.uid).setValue(["userInfo": professionalUserInfo])
+                            }
+                            else {
+                                print("ERROR! wasn't student or professional?")
+                            }
+                            
+                            
+                            // now go to user's home page
                             self.performSegue(withIdentifier: "userHomeSegue", sender: self)
                             
                         }
