@@ -372,18 +372,75 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wIf-CZ-5Wa">
+                                <rect key="frame" x="2" y="120" width="373" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="Exz-wV-hmn" customClass="MyCustomCell" customModule="crescat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="373" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Exz-wV-hmn" id="n6T-f4-N5E">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="119"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Q: Why did you choose Deloitte?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6j-cc-evx">
+                                                    <rect key="frame" x="8" y="33" width="263" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02t-qe-UAu">
+                                                    <rect key="frame" x="8" y="49" width="347" height="76"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">A: I chose Deloitte because I was interested in working in groups and trying out many different industries. I wanted to gain experience working with lots of different companies and problem solving.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bernie Sanders answered a question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbZ-Sc-0T5">
+                                                    <rect key="frame" x="8" y="8" width="357" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.036820951095433575" green="0.16718966774339492" blue="0.32451923076923073" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12/13/16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5S-AC-0ti">
+                                                    <rect key="frame" x="301" y="39" width="64" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="myCellAnswer" destination="02t-qe-UAu" id="SSb-Mt-7KM"/>
+                                            <outlet property="myCellDate" destination="e5S-AC-0ti" id="hS1-18-W30"/>
+                                            <outlet property="myCellQuestion" destination="y6j-cc-evx" id="7v1-N9-uCh"/>
+                                            <outlet property="myCellTitle" destination="ZbZ-Sc-0T5" id="bgU-WD-n6f"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6f8-dU-bNg" firstAttribute="trailing" secondItem="cu3-9U-Y1X" secondAttribute="trailingMargin" id="8CS-1b-NAP"/>
-                            <constraint firstItem="6f8-dU-bNg" firstAttribute="top" secondItem="FUf-8c-niY" secondAttribute="bottom" constant="15" id="AsV-eI-AgB"/>
-                            <constraint firstItem="6f8-dU-bNg" firstAttribute="leading" secondItem="cu3-9U-Y1X" secondAttribute="leadingMargin" id="BBA-ff-Izr"/>
-                            <constraint firstItem="FUf-8c-niY" firstAttribute="top" secondItem="dYd-9Y-vtG" secondAttribute="bottom" id="ppI-1d-s7j"/>
-                            <constraint firstItem="FUf-8c-niY" firstAttribute="centerX" secondItem="6f8-dU-bNg" secondAttribute="centerX" id="qT9-A2-b2v"/>
-                            <constraint firstItem="FUf-8c-niY" firstAttribute="leading" secondItem="cu3-9U-Y1X" secondAttribute="leadingMargin" constant="-15" id="wQH-z8-sbA"/>
+                            <constraint firstItem="FUf-8c-niY" firstAttribute="centerX" secondItem="6f8-dU-bNg" secondAttribute="centerX" id="2L3-QX-XMR"/>
+                            <constraint firstItem="FUf-8c-niY" firstAttribute="leading" secondItem="cu3-9U-Y1X" secondAttribute="leadingMargin" constant="-15" id="3bL-dh-n9r"/>
+                            <constraint firstItem="6f8-dU-bNg" firstAttribute="top" secondItem="FUf-8c-niY" secondAttribute="bottom" constant="15" id="3cK-ih-HTh"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="wIf-CZ-5Wa" secondAttribute="bottom" constant="-8" id="6Cg-Wf-5Wh"/>
+                            <constraint firstItem="6f8-dU-bNg" firstAttribute="leading" secondItem="cu3-9U-Y1X" secondAttribute="leadingMargin" id="Dbv-AM-uZo"/>
+                            <constraint firstItem="wIf-CZ-5Wa" firstAttribute="top" secondItem="6f8-dU-bNg" secondAttribute="bottom" constant="8" symbolic="YES" id="Fex-ys-KB6"/>
+                            <constraint firstItem="FUf-8c-niY" firstAttribute="trailing" secondItem="wIf-CZ-5Wa" secondAttribute="trailing" id="NC1-RZ-21E"/>
+                            <constraint firstItem="6f8-dU-bNg" firstAttribute="trailing" secondItem="cu3-9U-Y1X" secondAttribute="trailingMargin" id="ZVb-eV-5Rc"/>
+                            <constraint firstItem="FUf-8c-niY" firstAttribute="leading" secondItem="wIf-CZ-5Wa" secondAttribute="leading" id="oQn-wG-MAi"/>
+                            <constraint firstItem="FUf-8c-niY" firstAttribute="top" secondItem="dYd-9Y-vtG" secondAttribute="bottom" id="wR3-ns-itB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="wIf-CZ-5Wa" id="gWS-Xn-2CN"/>
                         <outlet property="userEmailLabel" destination="6f8-dU-bNg" id="Nxm-cc-z70"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeLogoutSegue" id="5cb-z9-NAl"/>
                     </connections>
@@ -397,7 +454,7 @@
         <image name="Crescat Logo.png" width="2048" height="2048"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5cb-z9-NAl"/>
         <segue reference="aeQ-Lw-D76"/>
-        <segue reference="S9h-Nf-IeG"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2344084F1E11A6BB00B5C600 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2344084E1E11A6BB00B5C600 /* TableViewCell.xib */; };
+		234408511E11B07700B5C600 /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408501E11B07700B5C600 /* SimpleTableViewCell.swift */; };
+		234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408521E12EDA000B5C600 /* MyCustomCell.swift */; };
 		237BE0521E0C89E900769A10 /* SignUpVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */; };
 		237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0551E0CB1A300769A10 /* HomeVC.swift */; };
 		23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2344084E1E11A6BB00B5C600 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		234408501E11B07700B5C600 /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		234408521E12EDA000B5C600 /* MyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyCustomCell.swift; path = crescat/MyCustomCell.swift; sourceTree = "<group>"; };
 		237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVCViewController.swift; sourceTree = "<group>"; };
 		237BE0551E0CB1A300769A10 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		23C424B71DFCCBF500D1D132 /* crescat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crescat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +120,7 @@
 		23C424AE1DFCCBF400D1D132 = {
 			isa = PBXGroup;
 			children = (
+				234408521E12EDA000B5C600 /* MyCustomCell.swift */,
 				23D70A851DFCEB200044BBFE /* Images */,
 				23C424B91DFCCBF500D1D132 /* crescat */,
 				23C424CE1DFCCBF500D1D132 /* crescatTests */,
@@ -137,6 +144,8 @@
 		23C424B91DFCCBF500D1D132 /* crescat */ = {
 			isa = PBXGroup;
 			children = (
+				2344084E1E11A6BB00B5C600 /* TableViewCell.xib */,
+				234408501E11B07700B5C600 /* SimpleTableViewCell.swift */,
 				23D70A841DFCE4710044BBFE /* crescat.entitlements */,
 				23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */,
 				23C424BC1DFCCBF500D1D132 /* ViewController.swift */,
@@ -311,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23C424C51DFCCBF500D1D132 /* LaunchScreen.storyboard in Resources */,
+				2344084F1E11A6BB00B5C600 /* TableViewCell.xib in Resources */,
 				23C424C21DFCCBF500D1D132 /* Assets.xcassets in Resources */,
 				23D70A871DFCEB5B0044BBFE /* Crescat Logo.png in Resources */,
 				23C424C01DFCCBF500D1D132 /* Main.storyboard in Resources */,
@@ -477,9 +487,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */,
 				23C424BD1DFCCBF500D1D132 /* ViewController.swift in Sources */,
 				237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */,
 				23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */,
+				234408511E11B07700B5C600 /* SimpleTableViewCell.swift in Sources */,
 				237BE0521E0C89E900769A10 /* SignUpVCViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

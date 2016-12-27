@@ -50,9 +50,9 @@ class SignUpVCViewController: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: Any) {
-        if self.emailTextField.text == "" || self.passwordTextField.text == ""
+        if self.emailTextField.text == "" || self.passwordTextField.text == "" || self.nameTextField.text == "" || self.mobileTextField.text == "" || self.companyMajorTextField.text == ""
         {
-            let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Oops!", message: "Please enter all of the required fields", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
@@ -66,7 +66,18 @@ class SignUpVCViewController: UIViewController {
                 {
                     // successfully logged in
                     //self.userLabel.text = "signed in, checking for email verification..."
-                    
+
+                                let name = self.nameTextField.text
+                                let email = self.emailTextField.text
+                                let password = self.passwordTextField.text
+                                let mobile = self.mobileTextField.text
+                                let companyMajor = self.companyMajorTextField.text
+                                let positionYear = self.positionYearTextField.text
+                                let school = self.schoolTextField.text
+                                let industry = self.industryTextField.text
+                                let location = self.locationTextField.text
+
+
                     // check for email verification
                     if let user = FIRAuth.auth()?.currentUser {
                         if !user.isEmailVerified
@@ -102,43 +113,38 @@ class SignUpVCViewController: UIViewController {
                             if self.studentProfessional.selectedSegmentIndex == 0 {
                                 print("adding new student info to database");
                                 
+                                
                                 let studentUserInfo = [
-                                    "name": self.nameTextField.text,
-                                    "email": self.emailTextField.text,
-                                    "password":self.passwordTextField.text
-                                    ,
-                                    "mobile": self.mobileTextField.text,
-                                    "major": self.companyMajorTextField.text,
-                                    "year":self.positionYearTextField.text,
-                                    "school": self.schoolTextField.text,
-                                    "industry": self.industryTextField.text,
-                                    "location":self.locationTextField.text,
-                                    "isStudent":true,
+                                    "name": name,
+                                    "email": email,
+                                    "password": password,
+                                    "mobile": mobile,
+                                    "major": companyMajor,
+                                    "year": positionYear ?? "",
+                                    "school": school ?? "",
+                                    "industry": industry ?? "",
+                                    "location": location ?? "",
+                                    "isStudent": true,
                                     "isProfessional":false
-
- 
-                                ]
+                                ] as [String : Any]
                                 ref.child("users").child(user.uid).setValue(["userInfo": studentUserInfo])
                             }
                             else if self.studentProfessional.selectedSegmentIndex == 1 {
                                 print("adding new professional info to database");
                                 
-                                let professionalUserInfo = [
-                                    "name": self.nameTextField.text,
-                                    "email": self.emailTextField.text,
-                                    "password":self.passwordTextField.text
-                                    
-                                    ,
-                                    "mobile": self.mobileTextField.text,
-                                    "company": self.companyMajorTextField.text,
-                                    "position":self.positionYearTextField.text,
-                                    "school": self.schoolTextField.text,
-                                    "industry": self.industryTextField.text,
-                                    "location":self.locationTextField.text,
-                                    "isStudent":false,
+                           let professionalUserInfo = [
+                                    "name": name,
+                                    "email": email,
+                                    "password": password,
+                                    "mobile": mobile,
+                                    "company": companyMajor,
+                                    "position": positionYear ?? "",
+                                    "school": school ?? "",
+                                    "industry": industry ?? "",
+                                    "location": location ?? "",
+                                    "isStudent": false,
                                     "isProfessional":true
- 
-                                ]
+                                ] as [String : Any]
                                 ref.child("users").child(user.uid).setValue(["userInfo": professionalUserInfo])
                             }
                             else {
