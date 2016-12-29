@@ -122,12 +122,12 @@
                         <outlet property="logoutButton" destination="oJd-Vb-EM3" id="jWY-AR-LEJ"/>
                         <outlet property="passwordField" destination="qr7-dt-CeI" id="QYo-zP-HMz"/>
                         <outlet property="userLabel" destination="kws-7t-uqq" id="eZG-ZE-Hvu"/>
-                        <segue destination="ZV8-v1-W4a" kind="show" identifier="loginSegue" id="t8G-pJ-HUm"/>
+                        <segue destination="ZV8-v1-W4a" kind="showDetail" identifier="loginSegue" action="showViewController:sender:" id="t8G-pJ-HUm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="88"/>
+            <point key="canvasLocation" x="-60" y="168"/>
         </scene>
         <!--Sign UpVC View Controller-->
         <scene sceneID="Exo-w3-3yf">
@@ -225,9 +225,6 @@
                                     <action selector="loginAction:" destination="wk7-C0-Mnv" eventType="touchUpInside" id="4FW-p4-gP4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Crescat Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tbp-CQ-NIz">
-                                <rect key="frame" x="85" y="62" width="205" height="110"/>
-                            </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TrZ-4e-gh8">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -261,6 +258,9 @@
                                     <action selector="signUpAction:" destination="wk7-C0-Mnv" eventType="touchUpInside" id="z3d-Ur-ZP8"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Crescat Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tbp-CQ-NIz">
+                                <rect key="frame" x="85" y="64" width="205" height="110"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -327,12 +327,12 @@
                         <outlet property="signUpButton" destination="Ek4-yq-Ieo" id="Kmh-JP-rQc"/>
                         <outlet property="statusLabel" destination="b8H-R5-wEO" id="Dxe-PV-ybG"/>
                         <outlet property="studentProfessional" destination="fKT-xR-CKX" id="K9l-eN-y9Y"/>
-                        <segue destination="ZV8-v1-W4a" kind="show" identifier="userHomeSegue" id="aeQ-Lw-D76"/>
+                        <segue destination="ZV8-v1-W4a" kind="showDetail" identifier="userHomeSegue" action="showViewController:sender:" id="aeQ-Lw-D76"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsA-gQ-c0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960.79999999999995" y="118.29085457271366"/>
+            <point key="canvasLocation" x="993" y="168"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="ItR-em-v2A">
@@ -349,7 +349,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUf-8c-niY">
                                 <rect key="frame" x="1" y="20" width="373" height="44"/>
                                 <items>
-                                    <navigationItem title="Crescat" id="ujj-PW-spN">
+                                    <navigationItem id="ujj-PW-spN">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="8wb-X4-GHZ">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jxn-qq-0j6">
                                                 <rect key="frame" x="276" y="7" width="81" height="30"/>
@@ -374,13 +374,13 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wIf-CZ-5Wa">
                                 <rect key="frame" x="2" y="120" width="373" height="547"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="Exz-wV-hmn" customClass="MyCustomCell" customModule="crescat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="373" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Exz-wV-hmn" id="n6T-f4-N5E">
-                                            <rect key="frame" x="0.0" y="0.0" width="373" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Q: Why did you choose Deloitte?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6j-cc-evx">
@@ -443,18 +443,90 @@
                         <outlet property="tableView" destination="wIf-CZ-5Wa" id="gWS-Xn-2CN"/>
                         <outlet property="userEmailLabel" destination="6f8-dU-bNg" id="Nxm-cc-z70"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeLogoutSegue" id="5cb-z9-NAl"/>
+                        <segue destination="0hZ-gN-CPt" kind="show" identifier="homeToProfessional" id="gND-aT-cWB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2P-7V-WLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608.79999999999995" y="-585.1574212893554"/>
+            <point key="canvasLocation" x="670" y="-609"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="v7I-fk-5e1">
+            <objects>
+                <viewController id="0hZ-gN-CPt" customClass="ProfileViewController" customModule="crescat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IYO-Lx-YOc"/>
+                        <viewControllerLayoutGuide type="bottom" id="0AX-nM-YBJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nB8-Ed-61k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Barack Obama" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heV-wP-ado">
+                                <rect key="frame" x="16" y="221" width="343" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="President @ The United States of America" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SG-Kx-oQ1">
+                                <rect key="frame" x="16" y="266" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="obama.png" translatesAutoresizingMaskIntoConstraints="NO" id="eOO-U1-4Hu">
+                                <rect key="frame" x="68" y="62" width="238" height="151"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL3-fQ-mbK">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ZV8-v1-W4a" kind="show" id="MvB-0b-GhO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yc-No-fCs">
+                                <rect key="frame" x="20" y="322" width="339" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Hi everyone I'm Obama! You probably know a little bit about me already, but I would love to teach you more about my career and help you succeed in any way I can. Ask me whatever questions you want!</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D.C. Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkE-Ty-kdC">
+                                <rect key="frame" x="16" y="295" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="locationLabel" destination="lkE-Ty-kdC" id="gR8-uY-j4x"/>
+                        <outlet property="professionalName" destination="heV-wP-ado" id="uVU-fx-3cc"/>
+                        <outlet property="profilePic" destination="eOO-U1-4Hu" id="jPA-Ve-ODQ"/>
+                        <outlet property="titleLabel" destination="2SG-Kx-oQ1" id="ro2-eo-U21"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USS-vn-IoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1456.8" y="-585.1574212893554"/>
         </scene>
     </scenes>
     <resources>
         <image name="Crescat Logo.png" width="2048" height="2048"/>
+        <image name="obama.png" width="552" height="437"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5cb-z9-NAl"/>
-        <segue reference="aeQ-Lw-D76"/>
+        <segue reference="t8G-pJ-HUm"/>
     </inferredMetricsTieBreakers>
 </document>

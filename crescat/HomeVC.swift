@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -18,7 +19,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     // These strings will be the data for the table view cells
-    let titles: [String] = ["Bernie Sanders", "Q: Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
+    let titles: [String] = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
     let questions: [String] = ["Q: Why did you choose deloitte?", "Q: What is your proudest achievement?", "Q: What is the best advice you've ever received?", "Q: Why Notre Dame?"]
     let answers: [String] = ["A: I really wanted to do consulting, it sounds super fun and awesome and they pay really well and I love being social and food!", "A: I went skydiving once and it was awesome, conquered ALL the fears and it was great bonding!", "A: Go to college, don't do drugs.", "A: Because Notre Dame has the best community ever, duh!"]
     let dates: [String] = ["1/2/17", "12/13/16", "12/1/16", "11/15/16"]
@@ -29,6 +30,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Don't forget to enter this in IB also
     let cellReuseIdentifier = "cell"
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,45 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // display current user's email
         let user = FIRAuth.auth()?.currentUser
         self.userEmailLabel.text = user?.email
+        
+        getProfessionalsList()
+    }
+    
+    func getProfessionalsList() {
+
+        let usersRef = FIRDatabase.database().reference(withPath: "users")
+        
+        usersRef.observe(.childAdded, with: { snapshot in
+            
+            let json = snapshot.value as! [String:AnyObject]
+            
+            let userInfo = json["userInfo"] as! [String:AnyObject]
+            var professionalArray: [[String:AnyObject]] = []
+            
+            
+            if (userInfo["isProfessional"] as! Bool) {
+                var prof: [String:String] = [:]
+                
+                let name = userInfo["name"] as! String
+                let company = userInfo["company"] as! String
+                let position = userInfo["position"] as! String
+                let industry = userInfo["industry"] as! String
+                let location = userInfo["location"] as! String
+                let school = userInfo["school"] as! String
+                
+                prof["name"] = name
+                prof["company"] = company
+                prof["position"] = position
+                prof["industry"] = industry
+                prof["location"] = location
+                prof["school"] = school
+
+                professionalArray.append(prof as [String : AnyObject])
+            }
+            
+            print(professionalArray)
+            
+        })
     }
     
     // number of rows in table view
@@ -70,6 +112,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let cell:MyCustomCell = tableView.cellForRow(at: indexPath) as! MyCustomCell
         cell.myCellTitle.backgroundColor = UIColor.darkGray
+        
+        // now go to that professional's profile page
+        self.performSegue(withIdentifier: "homeToProfessional", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

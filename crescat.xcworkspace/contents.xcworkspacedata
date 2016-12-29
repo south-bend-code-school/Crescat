@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:crescat/obama.png">
+   </FileRef>
+   <FileRef
       location = "group:crescat.xcodeproj">
    </FileRef>
    <FileRef
