@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231452511E15DABD00F945FC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231452501E15DABD00F945FC /* SearchViewController.swift */; };
 		232B53B71E13285D00EF10CB /* obama.png in Resources */ = {isa = PBXBuildFile; fileRef = 232B53B61E13285D00EF10CB /* obama.png */; };
 		234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408521E12EDA000B5C600 /* MyCustomCell.swift */; };
 		234408551E13216A00B5C600 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408541E13216A00B5C600 /* ProfileViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231452501E15DABD00F945FC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		232B53B61E13285D00EF10CB /* obama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = obama.png; path = ../crescat/obama.png; sourceTree = "<group>"; };
 		234408521E12EDA000B5C600 /* MyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
 		234408541E13216A00B5C600 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		23C424AE1DFCCBF400D1D132 = {
 			isa = PBXGroup;
 			children = (
+				231452501E15DABD00F945FC /* SearchViewController.swift */,
 				23D70A851DFCEB200044BBFE /* Images */,
 				23C424B91DFCCBF500D1D132 /* crescat */,
 				23C424CE1DFCCBF500D1D132 /* crescatTests */,
@@ -488,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */,
+				231452511E15DABD00F945FC /* SearchViewController.swift in Sources */,
 				23C424BD1DFCCBF500D1D132 /* ViewController.swift in Sources */,
 				237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */,
 				23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */,

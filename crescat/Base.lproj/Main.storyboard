@@ -327,7 +327,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wIf-CZ-5Wa">
-                                <rect key="frame" x="2" y="120" width="373" height="547"/>
+                                <rect key="frame" x="2" y="120" width="373" height="503"/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="Exz-wV-hmn" customClass="MyCustomCell" customModule="crescat" customModuleProvider="target">
@@ -396,6 +396,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LoG-bE-8wA">
+                                <rect key="frame" x="16" y="72" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="search">
+                                    <color key="titleColor" red="0.89859661930000001" green="1" blue="0.3934268595" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nYW-hl-cWE" kind="show" id="h3G-UZ-dMV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -408,6 +419,7 @@
                             <constraint firstItem="6f8-dU-bNg" firstAttribute="leading" secondItem="cu3-9U-Y1X" secondAttribute="leadingMargin" id="pmB-ai-whr"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="sMe-VI-uFA">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="8wb-X4-GHZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jxn-qq-0j6">
@@ -422,6 +434,7 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="wIf-CZ-5Wa" id="gWS-Xn-2CN"/>
                         <outlet property="userEmailLabel" destination="6f8-dU-bNg" id="Nxm-cc-z70"/>
@@ -501,7 +514,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USS-vn-IoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2396" y="-585.1574212893554"/>
+            <point key="canvasLocation" x="2409" y="-609"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="t57-Pa-jCF">
+            <objects>
+                <viewController id="nYW-hl-cWE" customClass="SearchViewController" customModule="crescat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r2c-Di-C55"/>
+                        <viewControllerLayoutGuide type="bottom" id="UpZ-Ct-6FJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D2K-Si-A4o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwI-Ub-fAS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profCell" id="i8O-pw-DbQ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i8O-pw-DbQ" id="OBU-Tg-uIR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.08235294118" green="0.34901960780000002" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="HwI-Ub-fAS" firstAttribute="leading" secondItem="D2K-Si-A4o" secondAttribute="leading" id="IBl-cD-9SW"/>
+                            <constraint firstItem="HwI-Ub-fAS" firstAttribute="top" secondItem="r2c-Di-C55" secondAttribute="bottom" id="Iep-Gw-8Ak"/>
+                            <constraint firstAttribute="trailing" secondItem="HwI-Ub-fAS" secondAttribute="trailing" id="crz-3R-VCn"/>
+                            <constraint firstAttribute="bottom" secondItem="HwI-Ub-fAS" secondAttribute="bottom" id="yRi-3W-Vpo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="n1l-8r-UAv" id="deO-3N-2YW"/>
+                        <outlet property="tableView" destination="HwI-Ub-fAS" id="Zpc-Uq-oMt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zpu-bo-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="n1l-8r-UAv">
+                    <connections>
+                        <outlet property="delegate" destination="nYW-hl-cWE" id="vGp-Hl-vn2"/>
+                        <outlet property="searchContentsController" destination="nYW-hl-cWE" id="dl2-3G-qrw"/>
+                        <outlet property="searchResultsDataSource" destination="nYW-hl-cWE" id="ksV-Lc-3h7"/>
+                        <outlet property="searchResultsDelegate" destination="nYW-hl-cWE" id="Dmz-bX-jfl"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="3252" y="-609.44527736131943"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RGe-JO-kan">
@@ -545,6 +610,6 @@
         <image name="obama.png" width="552" height="437"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aeQ-Lw-D76"/>
+        <segue reference="t8G-pJ-HUm"/>
     </inferredMetricsTieBreakers>
 </document>
