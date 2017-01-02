@@ -9,33 +9,52 @@
 import UIKit
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating  {
+    
+    //class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating  {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var searchTableView: UITableView!
     //var searchController = UISearchController(searchResultsController: nil)
 
     let cellReuseIdentifier = "profCell"
+    
     //var titles = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
-    var tabledata = ["lucques","chickendijon","godaddy","amazon","chris","ambata","bankofamerica","abelcine","AUTO + TRANSPORTATION","BILLS + UTILITIES","FOOD + DINING","HEALTH","AutoCare", "Auto Payment" , "Gas+Fuel","Electric Bill", "Internet/Television","Fast Foodd", "Gorceries" , "Restaurants","Gym Membership", "Health Insurance","auto","note-bullet","knife","heart"]
-
+    var names = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
+    var companies = ["Deloitte", "UW Madison", "United States of America", "England Monarchy"]
+    var concatenatedData = [String]()
+    
+    //var nameAndCompany: [(name:String , company: String)] = []
+    
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        searchTableView.delegate = self
+        searchTableView.dataSource = self
         
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-            self.tableView.tableHeaderView = controller.searchBar
+           searchTableView.tableHeaderView = controller.searchBar
             return controller
         })()
-        self.tableView.reloadData()
+        searchTableView.reloadData()
+        
+        //concatenatedData = names + companies
+        //print("concatenated array:")
+        //print(concatenatedData)
+
+        
+        // for searching through all fields
+       /*
+        for (i, element) in names.enumerated() {
+            nameAndCompany += [(name:names[i] , company:companies[i])]
+        }
+         */
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,32 +65,39 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateSearchResults(for searchController: UISearchController) {
         filteredTableData.removeAll(keepingCapacity: false)
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (tabledata as NSArray).filtered(using: searchPredicate)
+
+        let array = (names as NSArray).filtered(using: searchPredicate)
+        
         filteredTableData = array as! [String]
-        self.tableView.reloadData()
+        
+        searchTableView.reloadData()
     }
+    
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.resultSearchController.isActive {
             return self.filteredTableData.count
         }
         else {
-            return self.tabledata.count
+            return self.names.count
         }
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        let cell = searchTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ProfSearchCell
 
-        var section = indexPath.section
-        var row = indexPath.row
-        
         if self.resultSearchController.isActive {
-            cell.textLabel?.text = filteredTableData[indexPath.row]
+            let i = indexPath.row
+            let j = names.index(of: filteredTableData[i])
+    
+            cell.nameLabel.text = filteredTableData[i]
+            cell.companyLabel.text = companies[j!]
+            
         } else {
-            cell.textLabel?.text = self.tabledata[indexPath.row]
+           cell.nameLabel.text = self.names[indexPath.row]
+           cell.companyLabel.text = self.companies[indexPath.row]
         }
         return cell
         
