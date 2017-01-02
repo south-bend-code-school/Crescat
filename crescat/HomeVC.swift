@@ -18,6 +18,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // don't forget to hook this up from the storyboard
     @IBOutlet weak var tableView: UITableView!
     
+    var professionalArray: [[String:AnyObject]] = []
+    
     // These strings will be the data for the table view cells
     let titles: [String] = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
     let questions: [String] = ["Q: Why did you choose deloitte?", "Q: What is your proudest achievement?", "Q: What is the best advice you've ever received?", "Q: Why Notre Dame?"]
@@ -58,13 +60,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             let json = snapshot.value as! [String:AnyObject]
             
-            let userInfo = json["userInfo"] as! [String:AnyObject]
-            var professionalArray: [[String:AnyObject]] = []
+            print(snapshot.key)
+            let userID = snapshot.key
+
             
+            let userInfo = json["userInfo"] as! [String:AnyObject]
             
             if (userInfo["isProfessional"] as! Bool) {
                 var prof: [String:String] = [:]
                 
+                let uid = userID
                 let name = userInfo["name"] as! String
                 let company = userInfo["company"] as! String
                 let position = userInfo["position"] as! String
@@ -72,6 +77,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 let location = userInfo["location"] as! String
                 let school = userInfo["school"] as! String
                 
+                prof["uid"] = uid
                 prof["name"] = name
                 prof["company"] = company
                 prof["position"] = position
@@ -79,10 +85,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 prof["location"] = location
                 prof["school"] = school
 
-                professionalArray.append(prof as [String : AnyObject])
+                self.professionalArray.append(prof as [String : AnyObject])
             }
             
-            print(professionalArray)
+            print(self.professionalArray)
             
         })
     }
@@ -117,6 +123,14 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.performSegue(withIdentifier: "homeToProfessional", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "searchProfessionals") {
+            let yourNextViewController = (segue.destination as! SearchViewController)
+            yourNextViewController.professionalArray = self.professionalArray
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
         //return UITableViewAutomaticDimension
@@ -126,6 +140,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func logout(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()
         self.performSegue(withIdentifier: "homeLogoutSegue", sender: self)
+    }
+
+    @IBAction func searchButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "searchProfessionals", sender: self)
     }
 
     override func didReceiveMemoryWarning() {

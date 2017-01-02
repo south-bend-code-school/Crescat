@@ -9,24 +9,33 @@
 import UIKit
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating  {
+
+    var professionalArray:[[String:AnyObject]]! // from view controller
     
-    //class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating  {
-
-
     @IBOutlet weak var searchTableView: UITableView!
-    //var searchController = UISearchController(searchResultsController: nil)
 
     let cellReuseIdentifier = "profCell"
     
+    var names:[String] = []
+    var positions:[String] = []
+    var companies:[String] = []
+    var positionsAndCompanies:[String] = []
+    var industries:[String] = []
+    var locations:[String] = []
+    var schools:[String] = []
+    var details:[String] = []
+    
+    
     //var titles = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
-    var names = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
-    var companies = ["Deloitte", "UW Madison", "United States of America", "England Monarchy"]
-    var concatenatedData = [String]()
+    //var companies = ["Deloitte", "UW Madison", "United States of America", "England Monarchy"]
+    //var concatenatedData = [String]()
     
     //var nameAndCompany: [(name:String , company: String)] = []
     
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +53,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })()
         searchTableView.reloadData()
         
+        updateProfessionalsArrays()
+        
         //concatenatedData = names + companies
         //print("concatenated array:")
         //print(concatenatedData)
@@ -60,6 +71,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateProfessionalsArrays() {
+        print("printing profs now!")
+        for prof in professionalArray {
+            names.append(prof["name"] as! String)
+            positions.append(prof["position"] as! String)
+            companies.append(prof["company"] as! String)
+            positionsAndCompanies.append((prof["position"] as! String) + " at " +  (prof["company"] as! String))
+            industries.append(prof["industry"] as! String)
+            locations.append(prof["location"] as! String)
+            schools.append(prof["school"] as! String)
+            details.append((prof["industry"] as! String) + " • " +  (prof["location"] as! String) + " • " +  (prof["school"] as! String))
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -87,17 +112,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = searchTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ProfSearchCell
-
+        
         if self.resultSearchController.isActive {
             let i = indexPath.row
             let j = names.index(of: filteredTableData[i])
     
             cell.nameLabel.text = filteredTableData[i]
-            cell.companyLabel.text = companies[j!]
+            cell.companyLabel.text = positionsAndCompanies[j!]
+            cell.detailsLabel.text = details[j!]
             
         } else {
            cell.nameLabel.text = self.names[indexPath.row]
-           cell.companyLabel.text = self.companies[indexPath.row]
+           cell.companyLabel.text = self.positionsAndCompanies[indexPath.row]
+           cell.detailsLabel.text = self.details[indexPath.row]
         }
         return cell
         

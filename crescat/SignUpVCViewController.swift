@@ -113,7 +113,6 @@ class SignUpVCViewController: UIViewController {
                             if self.studentProfessional.selectedSegmentIndex == 0 {
                                 print("adding new student info to database");
                                 
-                                
                                 let studentUserInfo = [
                                     "name": name,
                                     "email": email,
@@ -177,7 +176,7 @@ class SignUpVCViewController: UIViewController {
 
     }
 
-    @IBAction func signUpAction(_ sender: Any) {
+    @IBAction func signUp(_ sender: Any) {
         if self.emailTextField.text == "" || self.passwordTextField.text == ""
         {
             let alertController = UIAlertController(title: "Oops!", message: "Please enter an email and password", preferredStyle: .alert)
