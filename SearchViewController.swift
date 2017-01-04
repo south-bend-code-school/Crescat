@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     let cellReuseIdentifier = "profCell"
     
+    var uids:[String] = []
     var names:[String] = []
     var positions:[String] = []
     var companies:[String] = []
@@ -76,6 +77,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateProfessionalsArrays() {
         print("printing profs now!")
         for prof in professionalArray {
+            uids.append(prof["uid"] as! String)
             names.append(prof["name"] as! String)
             positions.append(prof["position"] as! String)
             companies.append(prof["company"] as! String)
@@ -120,11 +122,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.nameLabel.text = filteredTableData[i]
             cell.companyLabel.text = positionsAndCompanies[j!]
             cell.detailsLabel.text = details[j!]
+            cell.uid.text = uids[j!]
             
         } else {
            cell.nameLabel.text = self.names[indexPath.row]
            cell.companyLabel.text = self.positionsAndCompanies[indexPath.row]
            cell.detailsLabel.text = self.details[indexPath.row]
+           cell.uid.text = uids[indexPath.row]
         }
         return cell
         

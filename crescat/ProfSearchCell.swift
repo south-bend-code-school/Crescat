@@ -18,33 +18,79 @@ class ProfSearchCell: UITableViewCell {
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var followToggle: UISwitch!
     
-    let uid:String! = nil
+    @IBOutlet weak var uid: UILabel!
     
+    // handles following and unfollowing of professionals
     @IBAction func toggleSwitched(_ sender: Any) {
         let userID = FIRAuth.auth()?.currentUser?.uid
         let userPath = "users/" + userID!
-        let followeesPath = "users/" + userID! + "listOfFollowees"
         let usersRef = FIRDatabase.database().reference(withPath: userPath)
-        let followeesRef = FIRDatabase.database().reference(withPath: followeesPath)
+        
+        // uid of selected professional
+        let uidText = uid.text! as String
+
+        
         
         if followToggle.isOn {
             // follow this professional
-            print("toggle is on!")
-            
-            // get old array
-            let oldFollowees = [String]()
+            //print("toggle is on!")
 
+            // get old array
             usersRef.observe(.childAdded, with: { snapshot in
+                print(snapshot.value)
+                
                 if (snapshot.hasChild("listOfFollowees")) {
-                    print("is following people already")
+                    // is following profs already
+                    
+                    let json = snapshot.value as! [String:AnyObject]
+                    var oldFollowees = json["listOfFollowees"] as! [String]
+                    
+                    // check if is not already following this prof
+                    if (!oldFollowees.contains(uidText)) {
+                        oldFollowees.append(uidText)
+                        usersRef.child("userInfo/listOfFollowees").setValue(oldFollowees)
+                    }
+                    
                 }
                 else {
-                    print("is following NO ONE")
+                    // is following no one
+                    
+                    var followeesArr = [String]()
+                    followeesArr.append(uidText)
+
+                    usersRef.child("userInfo/listOfFollowees").setValue(followeesArr)
                 }
+                
+                
             })
         }
         else {
             // unfollow this professional
+            //print("toggle is off")
+            
+            // get old array
+            usersRef.observe(.childAdded, with: { snapshot in
+                print(snapshot.value)
+                
+                if (snapshot.hasChild("listOfFollowees")) {
+                    // is following some prof(s) already
+                    
+                    let json = snapshot.value as! [String:AnyObject]
+                    var oldFollowees = json["listOfFollowees"] as! [String]
+                    
+                    // check that already following this prof
+                    if (oldFollowees.contains(uidText)) {
+                        oldFollowees.remove(at: oldFollowees.index(of: uidText)!)
+                        usersRef.child("userInfo/listOfFollowees").setValue(oldFollowees)
+                    }
+                    
+                }
+                else {
+                    print("ERROR! Tried to unfollow a prof, but is following NO ONE to begin with")
+                }
+                
+                
+            })
         }
     }
 }

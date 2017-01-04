@@ -60,9 +60,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             let json = snapshot.value as! [String:AnyObject]
             
+            // storing UID under userInfo also, makes following easier
             print(snapshot.key)
             let userID = snapshot.key
-
+            
             
             let userInfo = json["userInfo"] as! [String:AnyObject]
             
