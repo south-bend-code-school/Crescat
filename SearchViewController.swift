@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating  {
 
     var professionalArray:[[String:AnyObject]]! // from view controller
+    var followeesArray: [String] = [] // also from home view controller
     
     @IBOutlet weak var searchTableView: UITableView!
 
@@ -25,6 +26,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var locations:[String] = []
     var schools:[String] = []
     var details:[String] = []
+    var toggles:[Int] = []
     
     
     //var titles = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
@@ -86,6 +88,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             locations.append(prof["location"] as! String)
             schools.append(prof["school"] as! String)
             details.append((prof["industry"] as! String) + " • " +  (prof["location"] as! String) + " • " +  (prof["school"] as! String))
+            
+            // check for inital toggle value
+            if (followeesArray.contains(prof["uid"] as! String)) {
+                toggles.append(1)
+            }
+            else {
+                toggles.append(0)
+            }
         }
     }
     
@@ -124,11 +134,27 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.detailsLabel.text = details[j!]
             cell.uid.text = uids[j!]
             
+            // check toggle state
+            if (self.toggles[j!] == 1) {
+                cell.followToggle.setOn(true, animated: false)
+            }
+            else {
+                cell.followToggle.setOn(false, animated: false)
+            }
+            
         } else {
            cell.nameLabel.text = self.names[indexPath.row]
            cell.companyLabel.text = self.positionsAndCompanies[indexPath.row]
            cell.detailsLabel.text = self.details[indexPath.row]
            cell.uid.text = uids[indexPath.row]
+            
+            // check toggle state
+            if (self.toggles[indexPath.row] == 1) {
+                cell.followToggle.setOn(true, animated: false)
+            }
+            else {
+                cell.followToggle.setOn(false, animated: false)
+            }
         }
         return cell
         

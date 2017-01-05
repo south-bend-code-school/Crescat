@@ -22,6 +22,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var questionArray: [[String:AnyObject]] = []
     var followeesArray: [String] = []
     
+    var selectedCellIndex = 0 // used for sending data via segue to ProfileViewController
+    
     /*
     let titles: [String] = ["Bernie Sanders", "Alexandria Viegut", "Barack Obama", "Queen Elizabeth II"]
     let questions: [String] = ["Q: Why did you choose deloitte?", "Q: What is your proudest achievement?", "Q: What is the best advice you've ever received?", "Q: Why Notre Dame?"]
@@ -215,6 +217,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
         
+        selectedCellIndex = indexPath.row
+        
         let cell:MyCustomCell = tableView.cellForRow(at: indexPath) as! MyCustomCell
         cell.myCellTitle.backgroundColor = UIColor.darkGray
         
@@ -227,7 +231,45 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if(segue.identifier == "searchProfessionals") {
             let yourNextViewController = (segue.destination as! SearchViewController)
             yourNextViewController.professionalArray = self.professionalArray
+            yourNextViewController.followeesArray = self.followeesArray
         }
+        else if(segue.identifier == "homeToProfessional") {
+            let yourNextViewController = (segue.destination as! ProfileViewController)
+            
+            let question = self.questionArray[selectedCellIndex]
+            let profUID = question["uid"] as! String
+            
+            var i = 0
+            
+            for prof in professionalArray {
+                let uid = prof["uid"] as! String
+                if (uid == profUID) {
+                    print("found this prof in prof array")
+                    print(i)
+                    break
+                }
+                i += 1
+            }
+            
+            let thisProf = professionalArray[i]
+            
+            let name = thisProf["name"] as! String
+            let position = thisProf["position"] as! String
+            let company = thisProf["company"] as! String
+            let location = thisProf["location"] as! String
+            let industry = thisProf["industry"] as! String
+            let school = thisProf["school"] as! String
+                
+            yourNextViewController.uid = profUID
+            yourNextViewController.name = name
+            yourNextViewController.location = location
+            yourNextViewController.position = position
+            yourNextViewController.company = company
+            yourNextViewController.industry = industry
+            yourNextViewController.school = school
+
+        }
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

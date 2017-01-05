@@ -10,6 +10,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    var uid:String!
+    var name:String!
+    var position:String!
+    var company:String!
+    var location:String!
+    var industry:String!
+    var school:String!
+    
+    
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var professionalName: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,7 +28,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        professionalName.text = name
+        titleLabel.text = position + " at " + company
+        locationLabel.text = location
     }
 
     override func didReceiveMemoryWarning() {
