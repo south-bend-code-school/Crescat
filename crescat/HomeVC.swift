@@ -18,7 +18,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // don't forget to hook this up from the storyboard
     @IBOutlet weak var tableView: UITableView!
     
-    var professionalArray: [[String:AnyObject]] = []
+    var professionalArray: [[String:AnyObject]] = [] // has all the prof data
+    var professionalNameArray: [String] = [] // for ask a question
+    var professionalUIDArray: [String] = [] // for ask a question
     var questionArray: [[String:AnyObject]] = []
     var followeesArray: [String] = []
     
@@ -175,6 +177,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 prof["school"] = school
 
                 self.professionalArray.append(prof as [String : AnyObject])
+                self.professionalUIDArray.append(uid)
+                self.professionalNameArray.append(name)
             }
             
             //print(self.professionalArray)
@@ -230,6 +234,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if(segue.identifier == "searchProfessionals") {
             let yourNextViewController = (segue.destination as! SearchViewController)
+            yourNextViewController.professionalArray = self.professionalArray
+            yourNextViewController.followeesArray = self.followeesArray
+        }
+        else if(segue.identifier == "toAskQuestion") {
+            let yourNextViewController = (segue.destination as! AskQuestionViewController)
+            yourNextViewController.professionalNameArray = self.professionalNameArray
+            yourNextViewController.professionalUIDArray = self.professionalUIDArray
             yourNextViewController.professionalArray = self.professionalArray
             yourNextViewController.followeesArray = self.followeesArray
         }

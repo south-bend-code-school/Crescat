@@ -148,6 +148,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
            cell.detailsLabel.text = self.details[indexPath.row]
            cell.uid.text = uids[indexPath.row]
             
+            
             // check toggle state
             if (self.toggles[indexPath.row] == 1) {
                 cell.followToggle.setOn(true, animated: false)
@@ -155,6 +156,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             else {
                 cell.followToggle.setOn(false, animated: false)
             }
+ 
         }
         return cell
         
