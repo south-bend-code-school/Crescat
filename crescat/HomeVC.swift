@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var userEmailLabel: UILabel!
+    //@IBOutlet weak var userEmailLabel: UILabel!
     
     // don't forget to hook this up from the storyboard
     @IBOutlet weak var tableView: UITableView!
@@ -52,9 +52,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        /*
         // display current user's email
         let user = FIRAuth.auth()?.currentUser
         self.userEmailLabel.text = user?.email
+        */
         
         getProfessionalsList() // gets full list of professionals for searching
     }
@@ -284,7 +286,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 140
         //return UITableViewAutomaticDimension
     }
 
@@ -297,6 +299,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func searchButton(_ sender: Any) {
         // reset tableview arrays so can adjust to new data after (un)follows new profs
         
+        self.performSegue(withIdentifier: "searchProfessionals", sender: self)
+    }
+    @IBAction func leftButtonPress(_ sender: Any) {
+        
+        print("pressed left button")
         self.performSegue(withIdentifier: "searchProfessionals", sender: self)
     }
 

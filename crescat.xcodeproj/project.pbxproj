@@ -49,7 +49,7 @@
 /* Begin PBXFileReference section */
 		231452501E15DABD00F945FC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
 		231452521E16D8DF00F945FC /* ProfSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfSearchCell.swift; sourceTree = "<group>"; };
-		232942C21E1EEB190034CB41 /* AskQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AskQuestionViewController.swift; path = crescat/AskQuestionViewController.swift; sourceTree = "<group>"; };
+		232942C21E1EEB190034CB41 /* AskQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskQuestionViewController.swift; sourceTree = "<group>"; };
 		232B53B61E13285D00EF10CB /* obama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = obama.png; path = ../crescat/obama.png; sourceTree = "<group>"; };
 		234408521E12EDA000B5C600 /* MyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
 		234408541E13216A00B5C600 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,6 @@
 		23C424AE1DFCCBF400D1D132 = {
 			isa = PBXGroup;
 			children = (
-				232942C21E1EEB190034CB41 /* AskQuestionViewController.swift */,
 				23D70A851DFCEB200044BBFE /* Images */,
 				23C424B91DFCCBF500D1D132 /* crescat */,
 				23C424CE1DFCCBF500D1D132 /* crescatTests */,
@@ -155,6 +154,7 @@
 				23D70A841DFCE4710044BBFE /* crescat.entitlements */,
 				23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */,
 				23C424BC1DFCCBF500D1D132 /* ViewController.swift */,
+				232942C21E1EEB190034CB41 /* AskQuestionViewController.swift */,
 				231452501E15DABD00F945FC /* SearchViewController.swift */,
 				237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */,
 				237BE0551E0CB1A300769A10 /* HomeVC.swift */,

@@ -58,7 +58,7 @@ class ProfSearchCell: UITableViewCell {
                     var followeesArr = [String]()
                     followeesArr.append(uidText)
 
-                    usersRef.child("userInfo/listOfFollowees").setValue(followeesArr)
+                    //self.updateQuestionsArrayFirebase() // IDK why this is here?
                 }
                 
                 
