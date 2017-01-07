@@ -49,8 +49,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.dataSource = self
         
         // set row height
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 100
+        //tableView.rowHeight = UITableViewAutomaticDimension
         
         /*
         // display current user's email
@@ -281,6 +281,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             yourNextViewController.industry = industry
             yourNextViewController.school = school
 
+            yourNextViewController.questionArray = self.questionArray
         }
 
     }

@@ -13,6 +13,7 @@
 		232B53B71E13285D00EF10CB /* obama.png in Resources */ = {isa = PBXBuildFile; fileRef = 232B53B61E13285D00EF10CB /* obama.png */; };
 		234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408521E12EDA000B5C600 /* MyCustomCell.swift */; };
 		234408551E13216A00B5C600 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234408541E13216A00B5C600 /* ProfileViewController.swift */; };
+		234A2BFD1E204CFB00425BE4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234A2BFC1E204CFB00425BE4 /* ProfileTableViewCell.swift */; };
 		237BE0521E0C89E900769A10 /* SignUpVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */; };
 		237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BE0551E0CB1A300769A10 /* HomeVC.swift */; };
 		23C424BB1DFCCBF500D1D132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C424BA1DFCCBF500D1D132 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		232B53B61E13285D00EF10CB /* obama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = obama.png; path = ../crescat/obama.png; sourceTree = "<group>"; };
 		234408521E12EDA000B5C600 /* MyCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomCell.swift; sourceTree = "<group>"; };
 		234408541E13216A00B5C600 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
+		234A2BFC1E204CFB00425BE4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		237BE0511E0C89E900769A10 /* SignUpVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVCViewController.swift; sourceTree = "<group>"; };
 		237BE0551E0CB1A300769A10 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		23C424B71DFCCBF500D1D132 /* crescat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crescat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 		23C424AE1DFCCBF400D1D132 = {
 			isa = PBXGroup;
 			children = (
+				234A2BFC1E204CFB00425BE4 /* ProfileTableViewCell.swift */,
 				23D70A851DFCEB200044BBFE /* Images */,
 				23C424B91DFCCBF500D1D132 /* crescat */,
 				23C424CE1DFCCBF500D1D132 /* crescatTests */,
@@ -499,6 +502,7 @@
 				234408531E12EDA000B5C600 /* MyCustomCell.swift in Sources */,
 				231452511E15DABD00F945FC /* SearchViewController.swift in Sources */,
 				23C424BD1DFCCBF500D1D132 /* ViewController.swift in Sources */,
+				234A2BFD1E204CFB00425BE4 /* ProfileTableViewCell.swift in Sources */,
 				237BE0561E0CB1A300769A10 /* HomeVC.swift in Sources */,
 				231452531E16D8DF00F945FC /* ProfSearchCell.swift in Sources */,
 				232942C31E1EEB190034CB41 /* AskQuestionViewController.swift in Sources */,
