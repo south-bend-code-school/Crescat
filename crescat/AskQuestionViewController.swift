@@ -10,11 +10,12 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var postQuestionButton: UIButton!
+    @IBOutlet weak var charactersLabel: UILabel!
     
     var professionalNameArray: [String] = []
     var professionalUIDArray: [String] = []
@@ -30,8 +31,39 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
         pickerView.delegate = self
         pickerView.dataSource = self
+        
+        questionTextView.delegate = self
+        
+        makePretty()
+    }
+    
+    func makePretty() {
+        questionTextView.layer.cornerRadius = 5
+        
+        postQuestionButton.layer.cornerRadius = 5
+    }
+    
+    // changes characters remaining label
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        print(textView.text); //the textView parameter is the textView where text was changed
 
-        //methodOne()
+        let numChars = textView.text?.characters.count
+        let remainingChars = max(150 - numChars!, 0)
+        let stringChars = String(remainingChars)
+        charactersLabel.text = "Characters Remaining: " + stringChars
+
+    }
+    
+    // stops being able to edit if goes over 100 chars
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        print("chars \(textView.text.characters.count) \( text)")
+        
+        if(textView.text.characters.count > 150 && range.length == 0) {
+            print("Please summarize in 150 characters or less")
+            return false;
+        }
+        
+        return true;
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,6 +180,12 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.present(alert, animated: true, completion: nil)
         
         clearStuff()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let string = professionalNameArray[row]
+        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:UIColor.white])
     }
     
     func clearStuff() {

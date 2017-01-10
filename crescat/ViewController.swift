@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     //@IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var name:String!
     var position:String!
@@ -46,7 +49,7 @@ class ViewController: UIViewController {
             //self.userLabel.text = ""
         }
         */
-        
+        makePretty()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +65,11 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
     }
     
+    func makePretty() {
+        loginButton.layer.cornerRadius = 5
+        signUpButton.layer.cornerRadius = 5
+        forgotPasswordButton.layer.cornerRadius = 5
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
