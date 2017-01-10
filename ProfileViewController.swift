@@ -20,8 +20,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var industry:String!
     var school:String!
     
-    //var showBackButton:Bool!
-    
     var questionArray: [[String:AnyObject]] = []
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -47,17 +45,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let user = FIRAuth.auth()?.currentUser
         let currentUser = user?.uid
         if (self.uid == currentUser) {
-            print("THIS USER'S OWN PROFILE")
-            // TODO make answer text view editable
-            
+            // this is the user's own profile
             
             // make logout button
-            var logButton : UIBarButtonItem = UIBarButtonItem(title: "logout", style: UIBarButtonItemStyle.plain, target: self, action: "logout:")
+            let logButton : UIBarButtonItem = UIBarButtonItem(title: "logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProfileViewController.logout(_:)))
             self.navigationItem.rightBarButtonItem = logButton
             
             navigationItem.hidesBackButton = true
         }
-        
         
         
         if (self.questionArray.count > 0) {
@@ -116,6 +111,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.questionLabel.text = "Q: " + question!
         cell.answerTextView.text = "A: " + answer!
         cell.dateLabel.text = thisQuestion["date"] as! String?
+        let user = FIRAuth.auth()?.currentUser
+        let currentUser = user?.uid
+        if (self.uid == currentUser) {
+            cell.answerTextView.isEditable = true
+            cell.saveButton.isHidden = false
+        }
+        else {
+            cell.answerTextView.isEditable = false
+            cell.saveButton.isHidden = true
+        }
         
         return cell
     }
@@ -123,7 +128,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-        
     }
     
     func getQuestionsAndAnswers() {
@@ -164,15 +168,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         try! FIRAuth.auth()?.signOut()
         self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
     }
-
-
-    /*
-    @IBAction func logout(_ sender: Any) {
-        try! FIRAuth.auth()?.signOut()
-        self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
-        
-    }
- */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

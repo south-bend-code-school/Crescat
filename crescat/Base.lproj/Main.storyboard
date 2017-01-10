@@ -537,7 +537,7 @@
                                     <action selector="postQuestionButton:" destination="RoC-6B-ZD0" eventType="touchUpInside" id="9ct-M3-eDa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Characters remaining:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59S-bA-ETY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59S-bA-ETY">
                                 <rect key="frame" x="23" y="461" width="328" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -650,6 +650,7 @@
                                             <outlet property="answerTextView" destination="J20-si-RpX" id="89D-fA-TMV"/>
                                             <outlet property="dateLabel" destination="qW6-Mh-s2v" id="qv3-f4-vdl"/>
                                             <outlet property="questionLabel" destination="CEi-P1-i7c" id="Qhm-Uh-s05"/>
+                                            <outlet property="saveButton" destination="ie9-s4-ead" id="zQk-kh-fLq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -847,8 +848,8 @@
         <image name="obama.png" width="552" height="437"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5cb-z9-NAl"/>
         <segue reference="t8G-pJ-HUm"/>
-        <segue reference="9ed-HT-219"/>
+        <segue reference="ulS-4D-vyK"/>
+        <segue reference="gND-aT-cWB"/>
     </inferredMetricsTieBreakers>
 </document>

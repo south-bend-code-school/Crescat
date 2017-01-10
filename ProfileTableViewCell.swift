@@ -9,17 +9,24 @@
 import UIKit
 import FirebaseDatabase
 
-class ProfileTableViewCell: UITableViewCell {
+class ProfileTableViewCell: UITableViewCell, UITextViewDelegate {
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
+
     
     var questionArray: [[String:AnyObject]] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        answerTextView.delegate = self
+
+        saveButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+        saveButton.setTitleColor(UIColor.lightGray, for: UIControlState.selected)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,6 +37,8 @@ class ProfileTableViewCell: UITableViewCell {
     
     @IBAction func savePressed(_ sender: Any) {
         print("saved")
+        saveButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+        saveButton.setTitleColor(UIColor.lightGray, for: UIControlState.selected)
         updateQuestionOnFirebase()
     }
     
@@ -59,18 +68,14 @@ class ProfileTableViewCell: UITableViewCell {
             let questionPlusQ = "Q: " + (question as! String)
             
             if ((date as! String == self.dateLabel.text) && (questionPlusQ as! String == self.questionLabel.text)) {
-                //print("FOUND THE QUESTION YOU WANA EDIT")
+
                 
-                var newAns = self.answerTextView.text as! String?
+                var newAns = self.answerTextView.text as String?
                 newAns = newAns?.replacingOccurrences(of: "A: ", with: "")
                 questionData["answer"] = newAns
             }
             else {
                 questionData["answer"] = answer as! String?
-                print(date as! String)
-                print(self.dateLabel.text)
-                print(questionPlusQ as! String)
-                print(self.questionLabel.text)
             }
 
             questionData["question"] = question as! String?
@@ -80,15 +85,21 @@ class ProfileTableViewCell: UITableViewCell {
             
             self.questionArray.append(questionData as [String : AnyObject])
             print("questionArray in snap block:")
-            //print(self.questionArray)
             
             if (UInt(self.questionArray.count) == numChildren) {
-                //print("GOT ALL THE CHILDREN IN QUESTION ARRAY")
                 self.updateQuestionsArrayFirebase()
             }
             
         })
 
+    }
+    
+    // changes characters remaining label
+    func textViewDidChange(_ textView: UITextView) {
+        //print(answerTextView.text)
+
+        saveButton.setTitleColor(UIColor.blue, for: UIControlState.normal)
+        saveButton.setTitleColor(UIColor.blue, for: UIControlState.selected)
     }
     
     func updateQuestionsArrayFirebase() {
