@@ -52,12 +52,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //tableView.estimatedRowHeight = 100
         //tableView.rowHeight = UITableViewAutomaticDimension
         
-        /*
-        // display current user's email
-        let user = FIRAuth.auth()?.currentUser
-        self.userEmailLabel.text = user?.email
-        */
-        
         getProfessionalsList() // gets full list of professionals for searching
     }
     
@@ -302,6 +296,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         self.performSegue(withIdentifier: "searchProfessionals", sender: self)
     }
+    
     @IBAction func leftButtonPress(_ sender: Any) {
         
         print("pressed left button")

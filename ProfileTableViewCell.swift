@@ -42,8 +42,6 @@ class ProfileTableViewCell: UITableViewCell {
         // find number of children
         questionsRef.observe(.value, with: {snapshot in
             numChildren = snapshot.childrenCount
-            print("numChildren:")
-            print(numChildren)
         })
         
         
@@ -61,7 +59,7 @@ class ProfileTableViewCell: UITableViewCell {
             let questionPlusQ = "Q: " + (question as! String)
             
             if ((date as! String == self.dateLabel.text) && (questionPlusQ as! String == self.questionLabel.text)) {
-                print("FOUND THE QUESTION YOU WANA EDIT")
+                //print("FOUND THE QUESTION YOU WANA EDIT")
                 
                 var newAns = self.answerTextView.text as! String?
                 newAns = newAns?.replacingOccurrences(of: "A: ", with: "")
@@ -85,7 +83,7 @@ class ProfileTableViewCell: UITableViewCell {
             //print(self.questionArray)
             
             if (UInt(self.questionArray.count) == numChildren) {
-                print("GOT ALL THE CHILDREN IN QUESTION ARRAY")
+                //print("GOT ALL THE CHILDREN IN QUESTION ARRAY")
                 self.updateQuestionsArrayFirebase()
             }
             

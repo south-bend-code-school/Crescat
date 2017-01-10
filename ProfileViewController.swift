@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -38,8 +40,38 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        filterQuestions()
+        // see if cells should have editable answer
+        let user = FIRAuth.auth()?.currentUser
+        let currentUser = user?.uid
+        if (self.uid == currentUser) {
+            print("THIS USER'S OWN PROFILE")
+            // TODO make answer text view editable
+        }
+        
+        
+        
+        if (self.questionArray.count > 0) {
+            print("got full questions array")
+            filterQuestions()
+        }
+        else {
+            print("got empty questions array")
+            getQuestionsAndAnswers()
+        }
+        
+        makeProPicPretty()
     }
+    
+    func makeProPicPretty() {
+        profilePic.layer.borderWidth = 3
+        profilePic.layer.masksToBounds = false
+        profilePic.layer.borderColor = UIColor.white.cgColor
+        profilePic.layer.cornerRadius = profilePic.frame.height/2
+        profilePic.clipsToBounds = true
+        profilePic.image = UIImage(named: "obama.png")
+    }
+    
+
     
     func filterQuestions() {
         var thisProfsQuestions: [[String:AnyObject]] = []
@@ -83,6 +115,41 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("You tapped cell number \(indexPath.row).")
         
     }
+    
+    func getQuestionsAndAnswers() {
+        questionArray = [] // reset question array
+        
+        let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
+        
+        questionsRef.observe(.childAdded, with: { snapshot in
+            
+            let json = snapshot.value as! [String:AnyObject]
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            
+            // check if following this prof, if so then put question in array to be displayed
+            if (json["uid"] as! String? == uid) {
+                
+                var questionData: [String:String] = [:]
+                
+                let question = json["question"]
+                let answer = json["answer"]
+                let uid = json["uid"]
+                let profName = json["profName"]
+                let date = json["date"]
+                
+                questionData["answer"] = answer as! String?
+                questionData["question"] = question as! String?
+                questionData["uid"] = uid as! String?
+                questionData["profName"] = profName as! String?
+                questionData["date"] = date as! String?
+                
+                self.questionArray.append(questionData as [String : AnyObject])
+            }
+            self.tableView.reloadData()
+        })
+        tableView.reloadData()
+    }
+
 
     
     override func didReceiveMemoryWarning() {
