@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var industry:String!
     var school:String!
     
+    //var showBackButton:Bool!
+    
     var questionArray: [[String:AnyObject]] = []
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -33,6 +35,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         professionalName.text = name
         titleLabel.text = position + " at " + company
         locationLabel.text = location
@@ -46,6 +49,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if (self.uid == currentUser) {
             print("THIS USER'S OWN PROFILE")
             // TODO make answer text view editable
+            
+            
+            // make logout button
+            var logButton : UIBarButtonItem = UIBarButtonItem(title: "logout", style: UIBarButtonItemStyle.plain, target: self, action: "logout:")
+            self.navigationItem.rightBarButtonItem = logButton
+            
+            navigationItem.hidesBackButton = true
         }
         
         
@@ -150,7 +160,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
 
+    func logout(_ sender: Any) {
+        try! FIRAuth.auth()?.signOut()
+        self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
+    }
 
+
+    /*
+    @IBAction func logout(_ sender: Any) {
+        try! FIRAuth.auth()?.signOut()
+        self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
+        
+    }
+ */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

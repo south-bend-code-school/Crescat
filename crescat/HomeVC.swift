@@ -274,6 +274,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             yourNextViewController.company = company
             yourNextViewController.industry = industry
             yourNextViewController.school = school
+            //yourNextViewController.showBackButton = true
 
             yourNextViewController.questionArray = self.questionArray
         }

@@ -12,10 +12,10 @@ import FirebaseDatabase
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var userLabel: UILabel!
+    //@IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var logoutButton: UIButton!
+    //@IBOutlet weak var logoutButton: UIButton!
     
     var name:String!
     var position:String!
@@ -35,16 +35,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /*
+        // check if there is a user logged in
         if let user = FIRAuth.auth()?.currentUser {
-            self.logoutButton.alpha = 1.0
-            self.userLabel.text = user.email
+            //self.logoutButton.alpha = 1.0
+            //self.userLabel.text = user.email
         }
         else {
-            self.logoutButton.alpha = 0.0
-            self.userLabel.text = ""
+            //self.logoutButton.alpha = 0.0
+            //self.userLabel.text = ""
         }
+        */
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController!.view.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,13 +71,15 @@ class ViewController: UIViewController {
     @IBAction func createAccountAction(_ sender: Any) {
     }
 
+    /*
     @IBAction func logoutAction(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()
         self.userLabel.text = ""
-        self.logoutButton.alpha = 0.0
+        //self.logoutButton.alpha = 0.0
         self.emailField.text = ""
         self.passwordField.text = ""
     }
+ */
     
     @IBAction func loginAction(_ sender: Any) {
         if self.emailField.text == "" || self.passwordField.text == ""
@@ -274,6 +294,7 @@ class ViewController: UIViewController {
             yourNextViewController.company = company
             yourNextViewController.industry = industry
             yourNextViewController.school = school
+            //yourNextViewController.showBackButton = false
             
             yourNextViewController.questionArray = self.questionArray
         }
