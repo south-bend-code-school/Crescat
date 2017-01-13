@@ -70,6 +70,35 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
          */
     }
+    
+    // need this here in order to reload tableview after switching prof followees
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // nav bar colors
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        //self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.black]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //self.navigationController!.view.backgroundColor = oldColor
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        //self.navigationController?.navigationBar.backgroundColor = oldColor
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

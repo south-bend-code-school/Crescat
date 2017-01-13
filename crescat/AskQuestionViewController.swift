@@ -176,7 +176,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.postQuestionButton.titleLabel?.text = "Posted!:)"
         
         let alert = UIAlertController(title: "Success!", message: "Your question has been posted. Stay tuned for the answer.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
         clearStuff()
@@ -185,7 +185,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         let string = professionalNameArray[row]
-        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:UIColor.white])
+        return NSAttributedString(string: string, attributes: [NSForegroundColorAttributeName:UIColor.lightGray])
     }
     
     func clearStuff() {

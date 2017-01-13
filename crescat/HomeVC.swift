@@ -14,6 +14,7 @@ import FirebaseDatabase
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //@IBOutlet weak var userEmailLabel: UILabel!
+    @IBOutlet weak var askQuestionButton: UIButton!
     
     // don't forget to hook this up from the storyboard
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +23,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var professionalNameArray: [String] = [] // for ask a question
     var professionalUIDArray: [String] = [] // for ask a question
     var questionArray: [[String:AnyObject]] = []
+    var answeredQuestionArray: [[String:AnyObject]] = []
     var followeesArray: [String] = []
     
     var selectedCellIndex = 0 // used for sending data via segue to ProfileViewController
@@ -53,6 +55,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //tableView.rowHeight = UITableViewAutomaticDimension
         
         getProfessionalsList() // gets full list of professionals for searching
+        makePretty()
     }
     
     
@@ -64,7 +67,44 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         getListOfFollowees()
         tableView.reloadData()
+        
+        
+        // nav bar colors
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        //self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.lightGray  // Back buttons and such
+        
     }
+    
+    func makePretty() {
+        self.askQuestionButton.layer.cornerRadius = 5
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //self.navigationController!.view.backgroundColor = oldColor
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        //self.navigationController?.navigationBar.backgroundColor = oldColor
+        //self.navigationController?.navigationBar.tintColor = UIColor.black
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     func getListOfFollowees() {
@@ -100,6 +140,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getQuestionsAndAnswers() {
         questionArray = [] // reset question array
+        answeredQuestionArray = [] // reset question array
         
         //let questionsRef = FIRDatabase.database().reference(withPath: "questions")
         let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
@@ -110,7 +151,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             // check if following this prof, if so then put question in array to be displayed
             if (self.followeesArray.contains(json["uid"] as! String)) {
-        
+                
                 var questionData: [String:String] = [:]
                 
                 let question = json["question"]
@@ -125,15 +166,21 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 questionData["profName"] = profName as! String?
                 questionData["date"] = date as! String?
                 
+                if ((json["answer"]?.length)! >= 4) {
+                    self.answeredQuestionArray.append(questionData as [String : AnyObject])
+                }
+                
                 self.questionArray.append(questionData as [String : AnyObject])
             }
             else {
                 print("user is NOT following this prof")
             }
             
+            /*
             print("printing question array")
             print(self.questionArray)
             print(self.questionArray.count)
+            */
             self.tableView.reloadData()
         })
     }
@@ -184,8 +231,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.questionArray.count
-        //return self.questions.count
+        //return self.questionArray.count
+        return answeredQuestionArray.count
     }
     
     // create a cell for each table view row
@@ -200,7 +247,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.myCellTitle.text = "  " + self.titles[indexPath.row] + " answered a question"
 */
         
-        let thisQuestion = self.questionArray[indexPath.row]
+        //let thisQuestion = self.questionArray[indexPath.row]
+        let thisQuestion = self.answeredQuestionArray[indexPath.row]
         let name = thisQuestion["profName"] as! String?
         let question = thisQuestion["question"] as! String?
         let answer = thisQuestion["answer"] as! String?
@@ -243,7 +291,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         else if(segue.identifier == "homeToProfessional") {
             let yourNextViewController = (segue.destination as! ProfileViewController)
             
-            let question = self.questionArray[selectedCellIndex]
+            let question = self.answeredQuestionArray[selectedCellIndex]
             let profUID = question["uid"] as! String
             
             var i = 0

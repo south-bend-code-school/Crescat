@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var questionArray: [[String:AnyObject]] = []
     
+    var oldColor:UIColor!
+    
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var professionalName: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -67,6 +69,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         makeProPicPretty()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        oldColor = self.navigationController!.view.backgroundColor
+        self.navigationController!.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        //self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //self.navigationController!.view.backgroundColor = oldColor
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        //self.navigationController?.navigationBar.backgroundColor = oldColor
+        //self.navigationController?.navigationBar.tintColor = UIColor.black
+    }
+
+    
     func makeProPicPretty() {
         profilePic.layer.borderWidth = 3
         profilePic.layer.masksToBounds = false
@@ -75,6 +97,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePic.clipsToBounds = true
         profilePic.image = UIImage(named: "obama.png")
     }
+    
     
 
     

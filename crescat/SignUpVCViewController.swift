@@ -30,8 +30,12 @@ class SignUpVCViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
+        makePretty()
+    }
+    
+    func makePretty() {
+        loginButton.layer.cornerRadius = 5
+        signUpButton.layer.cornerRadius = 5
     }
 
     @IBAction func studentProfessionalAction(_ sender: Any) {
@@ -194,7 +198,7 @@ class SignUpVCViewController: UIViewController {
                 if error == nil
                 {
                     // successfully created user
-                    self.statusLabel.text = "waiting for email verification"
+                    self.statusLabel.text = "please verify email"
                     
                     NSLog("sending verification email")
                     user?.sendEmailVerification(completion: nil)
