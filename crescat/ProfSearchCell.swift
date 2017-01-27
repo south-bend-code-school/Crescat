@@ -41,6 +41,7 @@ class ProfSearchCell: UITableViewCell {
                 
                 if (snapshot.hasChild("listOfFollowees")) {
                     // is following profs already
+                    print("is following SOME PROFS ALREADY!")
                     
                     let json = snapshot.value as! [String:AnyObject]
                     var oldFollowees = json["listOfFollowees"] as! [String]
@@ -54,9 +55,13 @@ class ProfSearchCell: UITableViewCell {
                 }
                 else {
                     // is following no one
+                    print("is following NO ONE!")
                     
                     var followeesArr = [String]()
                     followeesArr.append(uidText)
+                    
+                    // added this
+                    usersRef.child("userInfo/listOfFollowees").setValue(followeesArr)
 
                     //self.updateQuestionsArrayFirebase() // IDK why this is here?
                 }

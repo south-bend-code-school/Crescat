@@ -171,6 +171,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 }
                 
                 self.questionArray.append(questionData as [String : AnyObject])
+                
+                //print(self.questionArray)
             }
             else {
                 print("user is NOT following this prof")

@@ -42,6 +42,7 @@ class ProfileTableViewCell: UITableViewCell, UITextViewDelegate {
         updateQuestionOnFirebase()
     }
     
+    // something weird is happening in this function!
     func updateQuestionOnFirebase() {
         // get old questions array from firebase
         let questionsRef = FIRDatabase.database().reference(withPath: "questions")
