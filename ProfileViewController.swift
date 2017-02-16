@@ -118,7 +118,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell:ProfileTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ProfileTableViewCell
         
         let thisQuestion = self.questionArray[indexPath.row]
-        //let name = thisQuestion["profName"] as! String?
         let question = thisQuestion["question"] as! String?
         let answer = thisQuestion["answer"] as! String?
         
@@ -180,7 +179,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func logout(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()
+        
+        // clear table view data
+        self.questionArray = []
+        self.tableView.reloadData()
+        
         self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
+        
+        //navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -189,15 +196,4 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -13,10 +13,7 @@ import FirebaseDatabase
 
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //@IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var askQuestionButton: UIButton!
-    
-    // don't forget to hook this up from the storyboard
     @IBOutlet weak var tableView: UITableView!
     
     var professionalArray: [[String:AnyObject]] = [] // has all the prof data
@@ -35,7 +32,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let dates: [String] = ["1/2/17", "12/13/16", "12/1/16", "11/15/16"]
     */
     
-    // Don't forget to enter this in IB also
+
     let cellReuseIdentifier = "cell"
     
 
@@ -142,48 +139,59 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         questionArray = [] // reset question array
         answeredQuestionArray = [] // reset question array
         
-        //let questionsRef = FIRDatabase.database().reference(withPath: "questions")
         let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
         
+        // .childAdded
         questionsRef.observe(.childAdded, with: { snapshot in
             
+            //print(snapshot)
+            //print(snapshot.value)
+            
+            //let blah = snapshot.value as! [AnyObject]
+            //for json in blah {
+            
             let json = snapshot.value as! [String:AnyObject]
+            print("question printed:", json, "\n\n")
             
-            // check if following this prof, if so then put question in array to be displayed
-            if (self.followeesArray.contains(json["uid"] as! String)) {
-                
-                var questionData: [String:String] = [:]
-                
-                let question = json["question"]
-                let answer = json["answer"]
-                let uid = json["uid"]
-                let profName = json["profName"]
-                let date = json["date"]
             
-                questionData["answer"] = answer as! String?
-                questionData["question"] = question as! String?
-                questionData["uid"] = uid as! String?
-                questionData["profName"] = profName as! String?
-                questionData["date"] = date as! String?
+                // check if following this prof, if so then put question in array to be displayed
+                if (self.followeesArray.contains(json["uid"] as! String)) {
                 
-                if ((json["answer"]?.length)! >= 4) {
-                    self.answeredQuestionArray.append(questionData as [String : AnyObject])
+                    var questionData: [String:String] = [:]
+                
+                    let question = json["question"]
+                    let answer = json["answer"]
+                    let uid = json["uid"]
+                    let profName = json["profName"]
+                    let date = json["date"]
+            
+                    questionData["answer"] = answer as! String?
+                    questionData["question"] = question as! String?
+                    questionData["uid"] = uid as! String?
+                    questionData["profName"] = profName as! String?
+                    questionData["date"] = date as! String?
+                
+                    let ansStr = answer as! String
+                
+                    if ( ansStr.characters.count >= 4) {
+                        self.answeredQuestionArray.append(questionData as [String : AnyObject])
+                    }
+
+                    self.questionArray.append(questionData as [String : AnyObject])
+                
+                    //print(self.questionArray)
                 }
-                
-                self.questionArray.append(questionData as [String : AnyObject])
-                
-                //print(self.questionArray)
-            }
-            else {
-                print("user is NOT following this prof")
-            }
+                else {
+                    print("user is NOT following this prof")
+                }
             
-            /*
-            print("printing question array")
-            print(self.questionArray)
-            print(self.questionArray.count)
-            */
-            self.tableView.reloadData()
+            
+                print("printing question array")
+                print(self.questionArray)
+                print(self.questionArray.count)
+            
+                self.tableView.reloadData()
+            //}
         })
     }
     
@@ -339,7 +347,22 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func logout(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()
+        
+        // clear table views and stuff, just in case different user logs in during this app session
+        professionalArray = []
+        professionalNameArray = []
+        professionalUIDArray = []
+        questionArray = []
+        answeredQuestionArray = []
+        followeesArray = []
+        
+        self.tableView.clearsContextBeforeDrawing = true
+        self.tableView.reloadData() // clear the table
+        
         self.performSegue(withIdentifier: "homeLogoutSegue", sender: self)
+        
+        //navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
     }
 
     @IBAction func searchButton(_ sender: Any) {
@@ -359,15 +382,4 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
