@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
     var name:String!
     var position:String!
     var company:String!
@@ -133,6 +135,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         {
                             NSLog("Email verified. Signing in...")
                             
+                            self.startActivityIndicator()
+                            
                             // lets just get these overwith here
                             self.getProfessionalsList()
                             self.getQuestionsAndAnswers()
@@ -182,6 +186,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
  
 
         }
+    }
+    
+    func startActivityIndicator() {
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        self.view.addSubview(activityView)
+    }
+    
+    func stopActivityIndicator() {
+        activityView.stopAnimating()
     }
     
     @IBAction func forgotPassword(_ sender: Any) {
@@ -317,6 +331,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             //yourNextViewController.showBackButton = false
             
             yourNextViewController.questionArray = self.questionArray
+            
+            stopActivityIndicator()
         }
 
     }
