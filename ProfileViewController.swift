@@ -176,6 +176,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         tableView.reloadData()
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 175.0
+    }
 
     func logout(_ sender: Any) {
         try! FIRAuth.auth()?.signOut()

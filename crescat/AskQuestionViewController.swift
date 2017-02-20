@@ -39,21 +39,8 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     func makePretty() {
         questionTextView.layer.cornerRadius = 5
-        
         postQuestionButton.layer.cornerRadius = 5
     }
-    
-    /*
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
-    }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        print("CLOSING?")
-        return true
-    }
- */
     
     // changes characters remaining label
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
@@ -69,6 +56,12 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     // stops being able to edit if goes over 100 chars
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         print("chars \(textView.text.characters.count) \( text)")
+        
+        // close textView if press "Done"
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
         
         if(textView.text.characters.count > 150 && range.length == 0) {
             print("Please summarize in 150 characters or less")

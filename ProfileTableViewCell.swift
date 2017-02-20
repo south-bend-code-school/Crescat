@@ -42,6 +42,16 @@ class ProfileTableViewCell: UITableViewCell, UITextViewDelegate {
         updateQuestionOnFirebase()
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // close textView if press "Done"
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true;
+    }
+    
     // something weird is happening in this function!
     func updateQuestionOnFirebase() {
         // get old questions array from firebase
