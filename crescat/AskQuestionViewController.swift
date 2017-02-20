@@ -43,6 +43,18 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         postQuestionButton.layer.cornerRadius = 5
     }
     
+    /*
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        print("CLOSING?")
+        return true
+    }
+ */
+    
     // changes characters remaining label
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         print(textView.text); //the textView parameter is the textView where text was changed
@@ -65,6 +77,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         return true;
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

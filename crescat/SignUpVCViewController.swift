@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class SignUpVCViewController: UIViewController {
+class SignUpVCViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var studentProfessional: UISegmentedControl!
     @IBOutlet weak var nameTextField: UITextField!
@@ -36,6 +36,56 @@ class SignUpVCViewController: UIViewController {
     func makePretty() {
         loginButton.layer.cornerRadius = 5
         signUpButton.layer.cornerRadius = 5
+        
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.mobileTextField.delegate = self
+        self.schoolTextField.delegate = self
+        self.companyMajorTextField.delegate = self
+        self.positionYearTextField.delegate = self
+        self.industryTextField.delegate = self
+        self.locationTextField.delegate = self
+
+        self.addDoneButtonOnKeyboard()
+        
+        // nav bar colors
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController!.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        //self.navigationController?.navigationBar.topItem?.title = "Create Account"
+
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.mobileTextField.inputAccessoryView = doneToolbar
+        self.positionYearTextField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        self.mobileTextField.resignFirstResponder()
+        self.positionYearTextField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 
     @IBAction func studentProfessionalAction(_ sender: Any) {
@@ -227,16 +277,5 @@ class SignUpVCViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -16,6 +16,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var askQuestionButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    let usersRef = FIRDatabase.database().reference(withPath: "users")
+    let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
+    
     var professionalArray: [[String:AnyObject]] = [] // has all the prof data
     var professionalNameArray: [String] = [] // for ask a question
     var professionalUIDArray: [String] = [] // for ask a question
@@ -129,8 +132,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         })
         
         getQuestionsAndAnswers() // great, now use this list to get the questions and answers
+        
+        
+        usersRef.removeAllObservers()
     }
-    
     
     
     
@@ -138,11 +143,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func getQuestionsAndAnswers() {
         questionArray = [] // reset question array
         answeredQuestionArray = [] // reset question array
-        
-        let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
+
         
         // .childAdded
         questionsRef.observe(.childAdded, with: { snapshot in
+        //questionsRef.observe(.value, with: { snapshot in
             
             //print(snapshot)
             //print(snapshot.value)
@@ -173,9 +178,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 
                     let ansStr = answer as! String
                 
-                    if ( ansStr.characters.count >= 4) {
+                    //if ( ansStr.characters.count >= 4) {
                         self.answeredQuestionArray.append(questionData as [String : AnyObject])
-                    }
+                    //}
 
                     self.questionArray.append(questionData as [String : AnyObject])
                 
@@ -197,8 +202,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getProfessionalsList() {
 
-        let usersRef = FIRDatabase.database().reference(withPath: "users")
-        
         usersRef.observe(.childAdded, with: { snapshot in
             
             let json = snapshot.value as! [String:AnyObject]
@@ -249,13 +252,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:MyCustomCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MyCustomCell
-        
-/*
-        cell.myCellQuestion.text = self.questions[indexPath.row]
-        cell.myCellAnswer.text = self.answers[indexPath.row]
-        cell.myCellDate.text = self.dates[indexPath.row]
-        cell.myCellTitle.text = "  " + self.titles[indexPath.row] + " answered a question"
-*/
         
         //let thisQuestion = self.questionArray[indexPath.row]
         let thisQuestion = self.answeredQuestionArray[indexPath.row]
@@ -359,11 +355,18 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.tableView.clearsContextBeforeDrawing = true
         self.tableView.reloadData() // clear the table
         
-        self.performSegue(withIdentifier: "homeLogoutSegue", sender: self)
+        print("removing all FB observers")
+        self.usersRef.removeAllObservers()
+        self.questionsRef.removeAllObservers()
         
-        //navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "homeLogoutSegue", sender: self)
     }
+    
+    /*
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+ */
 
     @IBAction func searchButton(_ sender: Any) {
         // reset tableview arrays so can adjust to new data after (un)follows new profs

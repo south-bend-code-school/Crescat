@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var oldColor:UIColor!
     
+    let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
+    
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var professionalName: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -146,8 +148,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func getQuestionsAndAnswers() {
         questionArray = [] // reset question array
         
-        let questionsRef = FIRDatabase.database().reference(withPath: "questions").queryOrdered(byChild: "date")
-        
         questionsRef.observe(.childAdded, with: { snapshot in
             
             let json = snapshot.value as! [String:AnyObject]
@@ -184,10 +184,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.questionArray = []
         self.tableView.reloadData()
         
+        print("removing all FB observers")
+        self.questionsRef.removeAllObservers()
+
+        
         self.performSegue(withIdentifier: "profileLogoutSegue", sender: self)
         
-        //navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

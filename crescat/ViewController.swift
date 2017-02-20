@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     //@IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
@@ -37,6 +37,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
         
         /*
         // check if there is a user logged in
@@ -285,6 +288,15 @@ class ViewController: UIViewController {
 
 
         })
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
+    @IBAction func returnPressed(sender: UITextField) {
+        self.view.endEditing(true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
